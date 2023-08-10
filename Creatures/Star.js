@@ -29,12 +29,22 @@ class Star {
         this.points.push(innerPoint);
         physics.addParticle(this.points[this.points.length - 1]);
 
-        // Create a ParticleString for each inner point//加上尾巴
-        const stepDirection = new toxi.geom.Vec2D(0, 1).normalizeTo(20);
-        let numParticles = random(4, 15);
-        let strength = 1;
-        let damping = 0.1;
-        let particleString = new ParticleString(tailPhysics, innerPoint, stepDirection, numParticles, strength, damping);
+        //加上尾巴
+        // Create a ParticleString for each inner point
+        // const stepDirection = new toxi.geom.Vec2D(0, 1).normalizeTo(20);
+        // let numParticles = random(4, 15);
+        // let strength = 1;
+        // let damping = 0.1;
+        //  let particleString0 = new ParticleString(tailPhysics, innerPoint, stepDirection, numParticles, strength, damping);
+        //  this.particleStrings.push(particleString0);
+
+        const startPosition = new Vec2D(width / 2, height / 4);
+        const stepDirection = new Vec2D(1, 0).normalizeTo(20);
+        const numParticles = random(10,25);
+        const strength = 0.01;
+        const damping = 0.01;
+
+        let particleString = new ParticleNetwork(tailPhysics, startPosition, stepDirection, numParticles, strength, damping);
         this.particleStrings.push(particleString);
 
         // Add a spring connecting inner point and center point
@@ -93,7 +103,7 @@ class Star {
 
     // Draw springs
     strokeWeight(1);
-    stroke(180, 50); // Set the color to gray
+    stroke(255, 80); // Set the color to gray
     for (let i = 0; i < physics.springs.length; i++) {
       let spring = physics.springs[i];
       line(spring.a.x, spring.a.y, spring.b.x, spring.b.y);
@@ -114,5 +124,35 @@ class Star {
     }
   }
 
+
+}
+
+let stars = [];
+let angStars = [];
+let numStars = 0;
+
+function createStars() {
+  for (let i = 0; i < numStars; i++) {
+    let centerX = random(width / 6, width - width / 6);
+    let centerY = random(height / 6, height - height / 6);
+    angStars.push(random(3, 7));
+    let innerRadius = random(10, 20);
+    let outerRadius = innerRadius + random(10, 30);
+    let star = new Star(centerX, centerY, angStars[i], innerRadius, outerRadius);
+    stars.push(star);
+  }
+  let mainStar = new Star(width/2, height/6, 12, 30, 70);
+  stars.push(mainStar);
+}
+
+function drawStars() {
+
+  for (let star of stars) {
+    star.draw();
+  }
+  //draw tails
+  // for (let s of tailPhysics.springs) {
+  //   line(s.a.x, s.a.y, s.b.x, s.b.y);
+  // }
 
 }

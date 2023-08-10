@@ -12,31 +12,33 @@ let draggedParticle = null;
 let attraction;
 
 function setup() {
-  let canvasHeight = Math.min(windowWidth, 2400);//动态设置画布宽度
-  let canvasWidth = canvasHeight / 4; // 对应的高度
+  let canvasHeight = Math.min(windowHeight, 2400);//动态设置画布宽度
+  let canvasWidth = canvasHeight / 3; // 对应的高度
   canvas = createCanvas(canvasWidth, canvasHeight);
   //canvas = createCanvas(2400,600);
   canvas.id("canvas");
 
   physics = new VerletPhysics2D();
-  physics.setWorldBounds(new Rect(0, 0, width, height));
+  physics.setWorldBounds(new Rect(0,20, width, height));
+  let gb0 = new GravityBehavior(new Vec2D(0, -0.01));// add gravity to tails
+  physics.addBehavior(gb0);
   physics.setDrag(0.001);
 
   tailPhysics = new VerletPhysics2D();
   tailPhysics.setWorldBounds(new Rect(0, 0, width, height));
-  // let gb = new GravityBehavior(new Vec2D(0, -0.05));// add gravity to tails
-  // tailPhysics.addBehavior(gb);
-  tailPhysics.setDrag(0.1);
+  let gb = new GravityBehavior(new Vec2D(0, 0.1));// add gravity to tails
+  tailPhysics.addBehavior(gb);
+  tailPhysics.setDrag(0.005);
 
-  attraction = new AttractionBehavior(new Vec2D(0, 0), 500, 0.5, 0.2);//整体的环境吸引力
+  attraction = new AttractionBehavior(new Vec2D(0, 0), height, 0.5, 0.2);//整体的环境吸引力
   physics.addBehavior(attraction);
 
   colorMode(HSB, 255);
 
   createStars();
-  createTreeCell();
-  createDNA();
-  createParticleNetrwork();
+  //createTreeCell();
+  //createDNA();
+  //createParticleNetrwork();
 
 }
 
@@ -55,9 +57,9 @@ function draw() {
   pinchInteraction();
 
   drawStars();
-  drawTreeCell();
-  drawDNA();
-  drawParticleNetwork();
+  //drawTreeCell();
+  //drawDNA();
+  //drawParticleNetwork();
 
 }
 
