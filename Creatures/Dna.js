@@ -1,10 +1,10 @@
 class DNA {
-    constructor(x, y, length, distance, tailPhysics) {
+    constructor(x, y, length, distance, physics) {
         this.particles = [];
         this.springs = [];
         this.length = length;
         this.distance = distance;  // 新增的距离属性
-        this.physics = tailPhysics;
+        this.physics = physics;
 
         for (let i = 0; i < this.length; i++) {
             let particleA = new toxi.physics2d.VerletParticle2D(x, y + i * this.distance);
@@ -27,6 +27,10 @@ class DNA {
                 this.springs.push(springA, springB, crossSpring, crossSpring2);
             }
         }
+        for(let i=0;i<this.particles.length;i++){
+            let repulsion = new AttractionBehavior(this.particles[i], 10, -0.7);
+            this.physics.addBehavior(repulsion);
+        }
     }
 
     display() {
@@ -41,10 +45,10 @@ class DNA {
             }
         }
 
-        // for (let i = 0; i < this.springs.length; i++) {
-        //     stroke(255,100);
-        //     line(this.springs[i].a.x, this.springs[i].a.y, this.springs[i].b.x, this.springs[i].b.y);
-        // }
+        for (let i = 0; i < this.springs.length; i++) {
+            stroke(255,100);
+            line(this.springs[i].a.x, this.springs[i].a.y, this.springs[i].b.x, this.springs[i].b.y);
+        }
     }
 }
 
@@ -53,7 +57,7 @@ let dnas = [];
 function createDNA() {
     for (let i = 0; i < 4; i++) {
         //在画布下方生成
-        dnas.push(new DNA(random(width / 6, width - width / 6), random(0, height / 4), random(3, 12), random(5,20),tailPhysics));
+        dnas.push(new DNA(random(width / 6, width - width / 6), random(0, height / 4), random(3, 12), random(5,20),noGravityPhysics));
     }
 }
 

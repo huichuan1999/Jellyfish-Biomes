@@ -32,6 +32,7 @@ function setup() {
   tailPhysics.setDrag(0.02);
 
   noGravityPhysics = new VerletPhysics2D();
+  noGravityPhysics.setWorldBounds(new Rect(0,20, width, height));
   noGravityPhysics.setDrag(0);
 
   attraction = new AttractionBehavior(new Vec2D(0, 0), height, 0.5, 0.2);//整体的环境吸引力
@@ -41,7 +42,7 @@ function setup() {
 
   createStars();
   //createTreeCell();
-  //createDNA();
+  createDNA();
   //createParticleNetrwork();
 
 }
@@ -63,7 +64,7 @@ function draw() {
 
   drawStars();
   //drawTreeCell();
-  //drawDNA();
+  drawDNA();
   //drawParticleNetwork();
 
 }
