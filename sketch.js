@@ -1,5 +1,6 @@
 let physics;
 let tailPhysics;
+let noGravityPhysics;
 
 let particleGrabRadius = 30;
 
@@ -22,13 +23,16 @@ function setup() {
   physics.setWorldBounds(new Rect(0,20, width, height));
   let gb0 = new GravityBehavior(new Vec2D(0, -0.01));// add gravity to tails
   physics.addBehavior(gb0);
-  physics.setDrag(0.001);
+ //physics.setDrag(0.001);
 
   tailPhysics = new VerletPhysics2D();
   tailPhysics.setWorldBounds(new Rect(0, 0, width, height));
   let gb = new GravityBehavior(new Vec2D(0, 0.1));// add gravity to tails
   tailPhysics.addBehavior(gb);
-  tailPhysics.setDrag(0.005);
+  tailPhysics.setDrag(0.02);
+
+  noGravityPhysics = new VerletPhysics2D();
+  noGravityPhysics.setDrag(0);
 
   attraction = new AttractionBehavior(new Vec2D(0, 0), height, 0.5, 0.2);//整体的环境吸引力
   physics.addBehavior(attraction);
@@ -49,6 +53,7 @@ function draw() {
   rect(0, 0, width, height);
   physics.update();
   tailPhysics.update();
+  noGravityPhysics.update();
 
 
   drawHand();
@@ -91,6 +96,14 @@ function handDetected() {
     } else {
       handAttractions[i].attractor.set(handParticles[i].getPosition());
     }
+    //适用于physics 的交互
+    if (physics.behaviors.length < physics.particles.length + 19) {
+      handAttractions[i].attractor.set(handParticles[i].getPosition());
+      physics.addBehavior(handAttractions[i]);
+    } else {
+      handAttractions[i].attractor.set(handParticles[i].getPosition());
+    }
+
   }
 
   //console.log(tailPhysics.particles.length,tailPhysics.behaviors, tailPhysics);

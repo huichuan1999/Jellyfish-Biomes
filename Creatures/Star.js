@@ -6,6 +6,7 @@ class Star {
     this.centerX = centerX;
     this.centerY = centerY;
     this.particleStrings = []; // array to store ParticleString objects
+    this.triangleStrings = [];
 
     this.centerPoint = new VerletParticle2D(centerX, centerY);
     physics.addParticle(this.centerPoint);
@@ -17,11 +18,13 @@ class Star {
     let lastInnerPoint = null; // to store the last inner point created
     let firstInnerPoint = null; // to store the first inner point created
     let innerDistance = 0; // to store the distance between two adjacent inner points
+
     for (let a = 0; a < TWO_PI; a += angle) {
       let sx = centerX + cos(a) * radius2;
       let sy = centerY + sin(a) * radius2;
       this.points.push(new VerletParticle2D(sx, sy));
       physics.addParticle(this.points[this.points.length - 1]);
+
       if (a < TWO_PI) {
         let sx = centerX + cos(a + angle / 2) * radius1;
         let sy = centerY + sin(a + angle / 2) * radius1;
@@ -44,8 +47,12 @@ class Star {
         const strength = 0.01;
         const damping = 0.01;
 
-        let particleString = new ParticleNetwork(tailPhysics, startPosition, stepDirection, numParticles, strength, damping);
-        this.particleStrings.push(particleString);
+        let particleNetwork = new ParticleNetwork(tailPhysics, startPosition, stepDirection, numParticles, strength, damping);
+        this.particleStrings.push(particleNetwork);
+        // let triangleString = new TriangleString(tailPhysics, startPosition, stepDirection, numParticles, strength, damping);
+        // this.triangleStrings.push(triangleString);
+        let quadString = new ParticleQuadChain(noGravityPhysics, startPosition, new Vec2D(1, 0).normalizeTo(30), numParticles/4, strength, damping);
+        this.triangleStrings.push(quadString);
 
         // Add a spring connecting inner point and center point
         let innerSpring = new VerletSpring2D(innerPoint, this.centerPoint, this.centerPoint.distanceTo(innerPoint), 0.01);
@@ -97,6 +104,11 @@ class Star {
       // Update the position of the first particle in the string to match the corresponding inner point
       this.particleStrings[i].particles[0].set(this.points[i * 2 + 1]);
     }
+
+    for (let i = 0; i < this.triangleStrings.length; i++) {
+      // Update the position of the first particle in the string to match the corresponding inner point
+      this.triangleStrings[i].particles[0].set(this.points[i * 2 + 1]);
+    }
   }
 
   draw() {
@@ -109,7 +121,7 @@ class Star {
       line(spring.a.x, spring.a.y, spring.b.x, spring.b.y);
     }
 
-    fill(255, 100);
+    fill(255, 120);
     stroke(255);
     beginShape();// draw stars
     for (let p of this.points) {
@@ -122,6 +134,10 @@ class Star {
     for (let particleString of this.particleStrings) {
       particleString.display();
     }
+    for (let triangleString of this.triangleStrings) {
+      triangleString.display();
+    }
+
   }
 
 
