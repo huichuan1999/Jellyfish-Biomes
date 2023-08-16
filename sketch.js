@@ -42,7 +42,7 @@ function setup() {
 
   createStars();
   //createTreeCell();
-  createDNA();
+  //createDNA();
   //createParticleNetrwork();
 
 }
@@ -64,7 +64,7 @@ function draw() {
 
   drawStars();
   //drawTreeCell();
-  drawDNA();
+  //drawDNA();
   //drawParticleNetwork();
 
 }

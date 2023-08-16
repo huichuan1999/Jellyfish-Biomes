@@ -51,8 +51,9 @@ class Star {
         this.particleStrings.push(particleNetwork);
         // let triangleString = new TriangleString(tailPhysics, startPosition, stepDirection, numParticles, strength, damping);
         // this.triangleStrings.push(triangleString);
-        let quadString = new ParticleQuadChain(noGravityPhysics, startPosition, new Vec2D(1, 0).normalizeTo(30), numParticles/4, strength, damping);
-        this.triangleStrings.push(quadString);
+
+        // let quadString = new ParticleQuadChain(noGravityPhysics, startPosition, new Vec2D(1, 0).normalizeTo(30), numParticles/4, strength, damping);
+        // this.triangleStrings.push(quadString);
 
         // Add a spring connecting inner point and center point
         let innerSpring = new VerletSpring2D(innerPoint, this.centerPoint, this.centerPoint.distanceTo(innerPoint), 0.01);
