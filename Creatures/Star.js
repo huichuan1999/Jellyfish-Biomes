@@ -42,10 +42,10 @@ class Star {
         //  this.particleStrings.push(particleString0);
 
         const startPosition = new Vec2D(width / 2, height / 4);
-        const stepDirection = new Vec2D(1, 0).normalizeTo(20);
-        const numParticles = random(10,25);
-        const strength = 0.01;
-        const damping = 0.01;
+        const stepDirection = new Vec2D(1, 0).normalizeTo(22);
+        const numParticles = random(7,18);
+        const strength = 0.003;
+        const damping = 0;
 
         let particleNetwork = new ParticleNetwork(tailPhysics, startPosition, stepDirection, numParticles, strength, damping);
         this.particleStrings.push(particleNetwork);
