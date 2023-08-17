@@ -7,6 +7,8 @@ class Star {
     this.centerY = centerY;
     this.particleStrings = []; // array to store ParticleString objects
     this.triangleStrings = [];
+    this.innerSprings = [];
+    this.time = 0;
 
     this.centerPoint = new VerletParticle2D(centerX, centerY);
     physics.addParticle(this.centerPoint);
@@ -30,6 +32,7 @@ class Star {
         let sy = centerY + sin(a + angle / 2) * radius1;
         let innerPoint = new VerletParticle2D(sx, sy);
         this.points.push(innerPoint);
+        // this.innerPoints.push(innerPoint);
         physics.addParticle(this.points[this.points.length - 1]);
 
         //加上尾巴
@@ -57,6 +60,7 @@ class Star {
 
         // Add a spring connecting inner point and center point
         let innerSpring = new VerletSpring2D(innerPoint, this.centerPoint, this.centerPoint.distanceTo(innerPoint), 0.01);
+        this.innerSprings.push(innerSpring);
         physics.addSpring(innerSpring);
 
         // If there's a last inner point, create a spring between it and the current inner point
@@ -91,7 +95,7 @@ class Star {
 
         if (this.points[2 * i] && this.points[2 * j]) {
           const distance = this.points[2 * i].distanceTo(this.points[2 * j]);
-          const spring = new VerletSpring2D(this.points[2 * i], this.points[2 * j], distance, 0.1);
+          const spring = new VerletSpring2D(this.points[2 * i], this.points[2 * j], distance, 0.05);
           physics.addSpring(spring);
         }
       }
@@ -110,6 +114,14 @@ class Star {
       // Update the position of the first particle in the string to match the corresponding inner point
       this.triangleStrings[i].particles[0].set(this.points[i * 2 + 1]);
     }
+  }
+
+  updateInnerSprings(){
+    let dynamicLength = this.radius1 + 30 * sin(this.time);
+    for(let spring of this.innerSprings){
+      spring.setRestLength(dynamicLength);
+    }
+    this.time += 0.05;
   }
 
   draw() {
@@ -132,15 +144,16 @@ class Star {
     endShape(CLOSE);
 
     this.updateParticleStrings();
+    this.updateInnerSprings();
+    // this.updateInnerPoints();
+
     for (let particleString of this.particleStrings) {
       particleString.display();
     }
     for (let triangleString of this.triangleStrings) {
       triangleString.display();
     }
-
   }
-
 
 }
 
