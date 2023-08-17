@@ -95,7 +95,7 @@ class Star {
 
         if (this.points[2 * i] && this.points[2 * j]) {
           const distance = this.points[2 * i].distanceTo(this.points[2 * j]);
-          const spring = new VerletSpring2D(this.points[2 * i], this.points[2 * j], distance, 0.05);
+          const spring = new VerletSpring2D(this.points[2 * i], this.points[2 * j], distance, 0.03);
           physics.addSpring(spring);
         }
       }
@@ -117,7 +117,7 @@ class Star {
   }
 
   updateInnerSprings(){
-    let dynamicLength = this.radius1 + 30 * sin(this.time);
+    let dynamicLength = this.radius1 + 35 * sin(this.time);
     for(let spring of this.innerSprings){
       spring.setRestLength(dynamicLength);
     }
@@ -134,12 +134,13 @@ class Star {
       line(spring.a.x, spring.a.y, spring.b.x, spring.b.y);
     }
 
-    fill(255, 120);
-    stroke(255);
+    fill(255, 100);
+    stroke(255,200);
+    strokeWeight(2);
     beginShape();// draw stars
     for (let p of this.points) {
-      circle(p.x, p.y, 10);
       vertex(p.x, p.y);
+      circle(p.x, p.y, 16);
     }
     endShape(CLOSE);
 
@@ -158,10 +159,10 @@ class Star {
 }
 
 let stars = [];
-let angStars = [];
-let numStars = 0;
-
 function createStars() {
+  let angStars = [];
+  let numStars = 0;
+
   for (let i = 0; i < numStars; i++) {
     let centerX = random(width / 6, width - width / 6);
     let centerY = random(height / 6, height - height / 6);
@@ -171,18 +172,13 @@ function createStars() {
     let star = new Star(centerX, centerY, angStars[i], innerRadius, outerRadius);
     stars.push(star);
   }
-  let mainStar = new Star(width/2, height/6, 12, 30, 70);
+
+  let mainStar = new Star(width/2, height/6, 12, 40, 100);
   stars.push(mainStar);
 }
 
 function drawStars() {
-
   for (let star of stars) {
     star.draw();
   }
-  //draw tails
-  // for (let s of tailPhysics.springs) {
-  //   line(s.a.x, s.a.y, s.b.x, s.b.y);
-  // }
-
 }
