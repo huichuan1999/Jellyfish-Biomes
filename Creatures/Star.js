@@ -6,7 +6,6 @@ class Star {
     this.centerX = centerX;
     this.centerY = centerY;
     this.particleStrings = []; // array to store ParticleString objects
-    this.triangleStrings = [];
     this.innerSprings = [];
     this.time = 0;
 
@@ -36,14 +35,6 @@ class Star {
         physics.addParticle(this.points[this.points.length - 1]);
 
         //加上尾巴
-        // Create a ParticleString for each inner point
-        // const stepDirection = new toxi.geom.Vec2D(0, 1).normalizeTo(20);
-        // let numParticles = random(4, 15);
-        // let strength = 1;
-        // let damping = 0.1;
-        //  let particleString0 = new ParticleString(tailPhysics, innerPoint, stepDirection, numParticles, strength, damping);
-        //  this.particleStrings.push(particleString0);
-
         const startPosition = new Vec2D(width / 2, height / 4);
         const stepDirection = new Vec2D(1, 0).normalizeTo(22);
         const numParticles = random(7,18);
@@ -52,11 +43,6 @@ class Star {
 
         let particleNetwork = new ParticleNetwork(tailPhysics, startPosition, stepDirection, numParticles, strength, damping);
         this.particleStrings.push(particleNetwork);
-        // let triangleString = new TriangleString(tailPhysics, startPosition, stepDirection, numParticles, strength, damping);
-        // this.triangleStrings.push(triangleString);
-
-        // let quadString = new ParticleQuadChain(noGravityPhysics, startPosition, new Vec2D(1, 0).normalizeTo(30), numParticles/4, strength, damping);
-        // this.triangleStrings.push(quadString);
 
         // Add a spring connecting inner point and center point
         let innerSpring = new VerletSpring2D(innerPoint, this.centerPoint, this.centerPoint.distanceTo(innerPoint), 0.01);
@@ -109,11 +95,6 @@ class Star {
       // Update the position of the first particle in the string to match the corresponding inner point
       this.particleStrings[i].particles[0].set(this.points[i * 2 + 1]);
     }
-
-    for (let i = 0; i < this.triangleStrings.length; i++) {
-      // Update the position of the first particle in the string to match the corresponding inner point
-      this.triangleStrings[i].particles[0].set(this.points[i * 2 + 1]);
-    }
   }
 
   updateInnerSprings(){
@@ -151,28 +132,12 @@ class Star {
     for (let particleString of this.particleStrings) {
       particleString.display();
     }
-    for (let triangleString of this.triangleStrings) {
-      triangleString.display();
-    }
   }
 
 }
 
 let stars = [];
 function createStars() {
-  let angStars = [];
-  let numStars = 0;
-
-  for (let i = 0; i < numStars; i++) {
-    let centerX = random(width / 6, width - width / 6);
-    let centerY = random(height / 6, height - height / 6);
-    angStars.push(floor(random(3, 8)));
-    let innerRadius = random(10, 20);
-    let outerRadius = innerRadius + random(10, 30);
-    let star = new Star(centerX, centerY, angStars[i], innerRadius, outerRadius);
-    stars.push(star);
-  }
-
   let mainStar = new Star(width/2, height/6, 12, 40, 100);
   stars.push(mainStar);
 }

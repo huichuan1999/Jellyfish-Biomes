@@ -1,6 +1,6 @@
 let physics;
 let tailPhysics;
-let noGravityPhysics;
+//let noGravityPhysics;
 
 let particleGrabRadius = 30;
 
@@ -31,9 +31,9 @@ function setup() {
   tailPhysics.addBehavior(gb);
   tailPhysics.setDrag(0.02);
 
-  noGravityPhysics = new VerletPhysics2D();
-  noGravityPhysics.setWorldBounds(new Rect(0,20, width, height));
-  noGravityPhysics.setDrag(0);
+  // noGravityPhysics = new VerletPhysics2D();
+  // noGravityPhysics.setWorldBounds(new Rect(0,20, width, height));
+  // noGravityPhysics.setDrag(0);
 
   attraction = new AttractionBehavior(new Vec2D(0, 0), height, 0.5, 0.2);//整体的环境吸引力
   physics.addBehavior(attraction);
@@ -41,6 +41,7 @@ function setup() {
   colorMode(HSB, 255);
 
   createStars();
+  createSmallStars();
   //createTreeCell();
   //createDNA();
   //createParticleNetrwork();
@@ -54,7 +55,7 @@ function draw() {
   rect(0, 0, width, height);
   physics.update();
   tailPhysics.update();
-  noGravityPhysics.update();
+  //noGravityPhysics.update();
 
 
   drawHand();
@@ -63,6 +64,7 @@ function draw() {
   pinchInteraction();
 
   drawStars();
+  drawSmallStars();
   //drawTreeCell();
   //drawDNA();
   //drawParticleNetwork();

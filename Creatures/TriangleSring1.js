@@ -38,8 +38,8 @@ class TriangleString {
     }
   
     display() {
-      stroke(255, 120);
-      fill(255,80);
+      stroke(255, 100);
+      fill(255,30);
       //noFill();
   
       for (let i = 0; i < this.particles.length - 2; i += 2) {

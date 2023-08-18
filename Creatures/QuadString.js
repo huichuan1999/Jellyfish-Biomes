@@ -34,7 +34,7 @@ class ParticleQuadChain {
     }
   
     display() {
-      stroke(255, 50);
+      stroke(255, 100);
       fill(255,30);
       //noStroke();
       //noFill();
