@@ -19,7 +19,9 @@ html, body {
 }
 
 #video {
+  clear:both;
   position: absolute;
+  display: block;
   transform: rotateY(180deg);
   filter: grayscale(100%) ;
   top: 0;
