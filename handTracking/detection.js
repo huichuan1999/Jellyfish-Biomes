@@ -1,6 +1,5 @@
 let detections ={};
 const videoElement = document.getElementById('video');
-//const canvasElement = document.getElementByClass("canvas");
 
 function gotHands(results) {
   detections = results;
@@ -26,14 +25,9 @@ const camera = new Camera(videoElement, {
   onFrame: async () => {
     await hands.send({image: videoElement});
   },
-  width: 2400/4,
-  height: 2400
-  // width: canvasElement.width,
-  // height: canvasElement.height
+  width: 2400,
+  height: 2400/4
+  // width: window.innerWidth,
+  // height: window.innerHeight
 });
 camera.start();
-
-// videoElement.width = canvas.width;
-// videoElement.height = canvas.height;
-// videoElement.style.width = canvas.width;
-// videoElement.style.height = canvas.height;
