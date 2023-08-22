@@ -5,19 +5,16 @@ function gotHands(results) {
   detections = results;
 }
 
-// const hands = new Hands({locateFile: (file) => {
-//   return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
-// }});
 const hands = new Hands({locateFile: (file) => {
   return `./libraries/mediapipe-hands/${file}`;
 }});
 hands.setOptions({
-  runningMode: "VIDEO",
-  delegate: "GPU",
+ // runningMode: "VIDEO",
   maxNumHands: 1, // the max number of hands
-  modelComplexity: 0, //maybe change to 0
+  modelComplexity: 1, //maybe change to 0
   minDetectionConfidence: 0.5,
-  minTrackingConfidence: 0.5
+  minTrackingConfidence: 0.5,
+  delegate: "GPU"
 });
 hands.onResults(gotHands);
 
@@ -28,7 +25,5 @@ const camera = new Camera(videoElement, {
   },
   width: 2400/4,
   height: 2400
-  // width: window.innerWidth,
-  // height: window.innerHeight
 });
 camera.start();

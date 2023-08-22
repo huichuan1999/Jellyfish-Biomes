@@ -106,7 +106,7 @@ class Tree {
 let trees = [];
 function createTreeCell() {
 
-  const treeCount = 3; // 假设您想要5棵树
+  const treeCount = 2; // 假设您想要5棵树
     const spacing = width / treeCount; // 计算画布宽度与树数量之间的间距
 
     for (let i = 0; i < treeCount; i++) {
