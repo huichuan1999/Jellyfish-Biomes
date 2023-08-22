@@ -25,7 +25,7 @@ class Branch {
     //strokeWeight(sw);
     strokeWeight(1);
     //console.log(`level: ${this.level}, strokeWeight: ${sw}`);
-    //line(this.begin.x, this.begin.y, this.end.x, this.end.y);
+    line(this.begin.x, this.begin.y, this.end.x, this.end.y);
     circle(this.end.x, this.end.y, sw * 5);
   }
 
@@ -111,14 +111,14 @@ function createTreeCell() {
 
     for (let i = 0; i < treeCount; i++) {
         let x = spacing * i + spacing / 2; // 计算每棵树的x坐标
-        let y = height  
+        let y = 0;
 
         // let totalLevels = floor(random(3, 5));
         // let branchCount = floor(random(2, 4));
-        let totalLevels = 3;
+        let totalLevels = 2;
         let branchCount = 2;
         //看好在哪个physics里面
-        let tree = new Tree(x, y, random(70, 120), branchCount, physics, totalLevels);
+        let tree = new Tree(x, y, 70, branchCount, tailPhysics, totalLevels);
         //let tree = new Tree(x, y, random(50, 100), branchCount, tailPhysics, totalLevels);
         trees.push(tree);
     }
