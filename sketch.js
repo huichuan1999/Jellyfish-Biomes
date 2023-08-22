@@ -42,7 +42,7 @@ function setup() {
 
   createStars();
   createSmallStars();
-  //createTreeCell();
+  createTreeCell();
   //createDNA();
   //createParticleNetrwork();
 
@@ -65,7 +65,7 @@ function draw() {
 
   drawStars();
   drawSmallStars();
-  //drawTreeCell();
+  drawTreeCell();
   //drawDNA();
   //drawParticleNetwork();
 
@@ -135,23 +135,23 @@ function pinchInteraction() {
       attraction.setAttractor(new Vec2D(midpoint.x, midpoint.y));
       attraction.setStrength(0.1);
 
-      for (let dna of dnas) {
-        for (let i = 0; i < 2; i++) {
-            let d = dist(midpoint.x, midpoint.y, dna.particles[i].x, dna.particles[i].y);
+      // for (let dna of dnas) {
+      //   for (let i = 0; i < 2; i++) {
+      //       let d = dist(midpoint.x, midpoint.y, dna.particles[i].x, dna.particles[i].y);
 
-            if (d < 20) {
-                dna.particles[i].set(width / 2, height / 2);
-            }
-        } //只探测最开始的粒子
+      //       if (d < 20) {
+      //           dna.particles[i].set(width / 2, height / 2);
+      //       }
+      //   } //只探测最开始的粒子
 
-        for (let i = dna.particles.length - 2; i < dna.particles.length; i++) {
-            let d = dist(midpoint.x, midpoint.y, dna.particles[i].x, dna.particles[i].y);
+      //   for (let i = dna.particles.length - 2; i < dna.particles.length; i++) {
+      //       let d = dist(midpoint.x, midpoint.y, dna.particles[i].x, dna.particles[i].y);
 
-            if (d < 20) {
-                dna.particles[i].set(random(midpoint.x-100,midpoint.x+100), random(midpoint.y-100,midpoint.y+100));
-            }
-        }
-      }
+      //       if (d < 20) {
+      //           dna.particles[i].set(random(midpoint.x-100,midpoint.x+100), random(midpoint.y-100,midpoint.y+100));
+      //       }
+      //   }
+      // }
       //捏合交互
       // for (let star of stars) {
       //   //for (let point of star.points) { 
