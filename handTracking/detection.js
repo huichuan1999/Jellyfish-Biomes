@@ -25,8 +25,8 @@ const camera = new Camera(videoElement, {
   onFrame: async () => {
     await hands.send({image: videoElement});
   },
-  width: 2400,
-  height: 2400/4
+  width: 2400/4,
+  height: 2400
   // width: window.innerWidth,
   // height: window.innerHeight
 });
