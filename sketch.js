@@ -153,20 +153,20 @@ function pinchInteraction() {
       //   }
       // }
       //捏合交互
-      // for (let star of stars) {
-      //   //for (let point of star.points) { 
-      //     let d = dist(midpoint.x, midpoint.y, star.centerPoint.x, star.centerPoint.y);
-      //     if (d < particleGrabRadius) {
-      //       // star.centerPoint.lock();
-      //       // star.centerPoint.x = midpoint.x;
-      //       // star.centerPoint.y = midpoint.y;
-      //       // star.centerPoint.unlock();
-      //       draggedParticle = star.centerPoint;
-      //       draggedParticle.set(midpoint.x, midpoint.y,);
-      //       //break;
-      //     }
-      //   //}
-      // }
+      for (let star of stars) {
+        //for (let point of star.points) { 
+          let d = dist(midpoint.x, midpoint.y, star.centerPoint.x, star.centerPoint.y);
+          if (d < particleGrabRadius) {
+            // star.centerPoint.lock();
+            // star.centerPoint.x = midpoint.x;
+            // star.centerPoint.y = midpoint.y;
+            // star.centerPoint.unlock();
+            draggedParticle = star.centerPoint;
+            draggedParticle.set(midpoint.x, midpoint.y,);
+            //break;
+          }
+        //}
+      }
     }
     else {
       draggedParticle = null;

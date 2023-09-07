@@ -24,8 +24,8 @@ const camera = new Camera(videoElement, {
     await hands.send({image: videoElement});
   },
   // rotate: Math.PI/2,
-  width: 360/4,
-  height: 360
+  width: 1000/2.4,
+  height: 1000
 });
 camera.start();
 

@@ -118,7 +118,7 @@ class SmallStar {
     }
   
     updateInnerSprings(){
-      let dynamicLength = this.radius1 + 16 * sin(this.time);
+      let dynamicLength = this.radius1 + this.radius1 * sin(this.time);
       for(let spring of this.innerSprings){
         spring.setRestLength(dynamicLength);
       }
@@ -148,24 +148,27 @@ class SmallStar {
   
   }
   
-  let smallStars = [];
+  // let smallStars = [];
   function createSmallStars() {
     let angStars = [];
-    let numStars = 2;
+    let numStars = 4;
   
     for (let i = 0; i < numStars; i++) {
       let centerX = random(width / 6, width - width / 6);
       let centerY = random(height / 6, height - height / 6);
       angStars.push(floor(random(3, 6)));
-      let innerRadius = random(15, 20);
-      let outerRadius = innerRadius + random(10, 30);
+      let innerRadius = random(10, 15);
+      let outerRadius = innerRadius + random(10, 20);
+      // let innerRadius = random(15, 20);
+      // let outerRadius = innerRadius + random(10, 30);
       let star = new SmallStar(centerX, centerY, angStars[i], innerRadius, outerRadius);
-      smallStars.push(star);
+      stars.push(star);
+      // smallStars.push(star);
     }
   }
   
   function drawSmallStars() {
-    for (let smallStar of smallStars) {
-        smallStar.draw();
-    }
+    // for (let smallStar of smallStars) {
+    //     smallStar.draw();
+    // }
   }
