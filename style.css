@@ -2,8 +2,8 @@ html, body {
   background-color: #000;
   margin: 0;  
   padding: 0;
-  justify-content: center;
-  align-items: center; 
+  /* justify-content: center;
+  align-items: center;  */
   /* overflow: hidden;   */
   /* This ensures no scrollbars */
 }
@@ -20,11 +20,12 @@ html, body {
 
 #canvas {
   position: absolute;
-  transform: rotateY(180deg) rotate(90deg);
+  transform: rotateY(180deg) rotate(90deg) scale(1.5);
   top: 0; /* Moves it half its own height upwards */
-  left: 25%;
-  width: 100vh;
-  height: 100vw;
+  left: 40%;
+  right:0;
+  width: 100vw;
+  height: 100vh;
   z-index: 2;
 }
 
@@ -32,7 +33,7 @@ html, body {
   /* clear:both; */
   position: absolute;
   /* display: block; */
-  transform: rotateY(180deg);
+  transform: rotateY(180deg) rotate(90deg);
   filter: grayscale(100%) ;
   top: 0;
   left: 0%;
