@@ -37,7 +37,7 @@ class Star {
         //加上尾巴
         const startPosition = new Vec2D(width / 2, height / 4);
         const stepDirection = new Vec2D(1, 0).normalizeTo(22);
-        const numParticles = random(7,18);
+        const numParticles = random(10,20);
         const strength = 0.003;
         const damping = 0;
 
