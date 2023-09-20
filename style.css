@@ -7,14 +7,24 @@ html, body {
   /* overflow: hidden;   */
   /* This ensures no scrollbars */
 }
-
+/* 
 #canvas {
   position: absolute;
-  transform: rotateY(180deg) ;
-  top: 0; /* Moves it half its own height upwards */
+  transform: rotateY(180deg);
+  top: 0; 
   left: 25%;
   width: 100vw;
   height: 100vh;
+  z-index: 2;
+} */
+
+#canvas {
+  position: absolute;
+  transform: rotateY(180deg) rotate(90deg);
+  top: 0; /* Moves it half its own height upwards */
+  left: 25%;
+  width: 100vh;
+  height: 100vw;
   z-index: 2;
 }
 
