@@ -46,7 +46,7 @@ class SmallStar {
   
           const startPosition = new Vec2D(width / 2, height / 4);
           const stepDirection = new Vec2D(1, 0).normalizeTo(30);
-          const numParticles = random(7,18);
+          const numParticles = random(10,25);
           const strength = 0.003;
           const damping = 0;
   
@@ -157,7 +157,7 @@ class SmallStar {
       let centerX = random(width / 6, width - width / 6);
       let centerY = random(height / 6, height - height / 6);
       angStars.push(floor(random(3, 6)));
-      let innerRadius = random(10, 15);
+      let innerRadius = random(15, 30);
       let outerRadius = innerRadius + random(10, 20);
       // let innerRadius = random(15, 20);
       // let outerRadius = innerRadius + random(10, 30);

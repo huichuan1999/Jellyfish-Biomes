@@ -138,7 +138,7 @@ class Star {
 
 let stars = [];
 function createStars() {
-  let mainStar = new Star(width/2, height/6, 12, 30, 80);
+  let mainStar = new Star(width/2, height/6, 12, 45, 100);
   stars.push(mainStar);
 }
 

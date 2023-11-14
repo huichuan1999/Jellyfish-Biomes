@@ -21,13 +21,13 @@ function setup() {
 
   physics = new VerletPhysics2D();
   physics.setWorldBounds(new Rect(0,20, width, height));
-  let gb0 = new GravityBehavior(new Vec2D(0, -0.01));// add gravity to tails
+  let gb0 = new GravityBehavior(new Vec2D(0, -0.001));// add gravity to tails
   physics.addBehavior(gb0);
  //physics.setDrag(0.001);
 
   tailPhysics = new VerletPhysics2D();
   tailPhysics.setWorldBounds(new Rect(0, 0, width, height));
-  let gb = new GravityBehavior(new Vec2D(0, 0.1));// add gravity to tails
+  let gb = new GravityBehavior(new Vec2D(0, 0.05));// add gravity to tails
   tailPhysics.addBehavior(gb);
   tailPhysics.setDrag(0.02);
 
