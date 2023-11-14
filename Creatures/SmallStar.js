@@ -157,7 +157,7 @@ class SmallStar {
       let centerX = random(width / 6, width - width / 6);
       let centerY = random(height / 6, height - height / 6);
       angStars.push(floor(random(3, 6)));
-      let innerRadius = random(15, 30);
+      let innerRadius = random(12, 22);
       let outerRadius = innerRadius + random(10, 20);
       // let innerRadius = random(15, 20);
       // let outerRadius = innerRadius + random(10, 30);

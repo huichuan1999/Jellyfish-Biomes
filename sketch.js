@@ -13,8 +13,8 @@ let draggedParticle = null;
 let attraction;
 
 function setup() {
-  let canvasHeight = 2900/4;//动态设置画布宽度
-  let canvasWidth = 2600/4; // 对应的高度
+  let canvasHeight = 290*2;//动态设置画布宽度
+  let canvasWidth = 260*2; // 对应的高度
   canvas = createCanvas(canvasWidth, canvasHeight);
   //canvas = createCanvas(2400,600);
   canvas.id("canvas");
@@ -29,7 +29,7 @@ function setup() {
   tailPhysics.setWorldBounds(new Rect(0, 0, width, height));
   let gb = new GravityBehavior(new Vec2D(0, 0.05));// add gravity to tails
   tailPhysics.addBehavior(gb);
-  tailPhysics.setDrag(0.02);
+  tailPhysics.setDrag(0.01);
 
   // noGravityPhysics = new VerletPhysics2D();
   // noGravityPhysics.setWorldBounds(new Rect(0,20, width, height));

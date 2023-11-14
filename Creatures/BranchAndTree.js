@@ -118,7 +118,7 @@ function createTreeCell() {
         let totalLevels = 3;
         let branchCount = 2;
         //看好在哪个physics里面
-        let tree = new Tree(x, y, 120, branchCount, tailPhysics, totalLevels);
+        let tree = new Tree(x, y, 90, branchCount, tailPhysics, totalLevels);
         //let tree = new Tree(x, y, random(50, 100), branchCount, tailPhysics, totalLevels);
         trees.push(tree);
     }

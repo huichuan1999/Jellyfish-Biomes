@@ -9,7 +9,7 @@ const hands = new Hands({locateFile: (file) => {
   return `./libraries/mediapipe-hands/${file}`;
 }});
 hands.setOptions({
- // runningMode: "VIDEO",
+  runningMode: "VIDEO",
   maxNumHands: 1, // the max number of hands
   modelComplexity: 1, //maybe change to 0
   minDetectionConfidence: 0.5,
@@ -24,8 +24,8 @@ const camera = new Camera(videoElement, {
     await hands.send({image: videoElement});
   },
   // rotate: Math.PI/2,
-  width: 1000/1.7,
-  height: 1000
+  width: 2600/4,
+  height: 2900/4
 });
 camera.start();
 
