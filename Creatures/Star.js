@@ -98,7 +98,7 @@ class Star {
   }
 
   updateInnerSprings(){
-    let dynamicLength = this.radius1 + 35 * sin(this.time);
+    let dynamicLength = this.radius1 + (this.radius1-5) * sin(this.time);
     for(let spring of this.innerSprings){
       spring.setRestLength(dynamicLength);
     }
@@ -138,8 +138,10 @@ class Star {
 
 let stars = [];
 function createStars() {
-  let mainStar = new Star(width/2, height/6, 12, 40, 80);
-  stars.push(mainStar);
+  let mainStar1 = new Star(width/2, height/6, 10, 30, 60);
+  stars.push(mainStar1);
+  let mainStar2 = new Star(width/2, height/6, 12, 40, 80);
+  stars.push(mainStar2);
 }
 
 function drawStars() {

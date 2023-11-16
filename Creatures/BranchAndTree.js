@@ -26,7 +26,7 @@ class Branch {
     strokeWeight(1);
     //console.log(`level: ${this.level}, strokeWeight: ${sw}`);
     line(this.begin.x, this.begin.y, this.end.x, this.end.y);
-    circle(this.end.x, this.end.y, sw * 5);
+    circle(this.end.x, this.end.y, sw * 4);
   }
 
   branchA() {
@@ -106,7 +106,7 @@ class Tree {
 let trees = [];
 function createTreeCell() {
 
-  const treeCount = 3; // 假设您想要5棵树
+  const treeCount = 5; // 假设您想要5棵树
     const spacing = width / treeCount; // 计算画布宽度与树数量之间的间距
 
     for (let i = 0; i < treeCount; i++) {
